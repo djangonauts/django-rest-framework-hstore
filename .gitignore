@@ -1,0 +1,13 @@
+*.pyc
+*.py[cod]
+*.py~
+*.egg-info/
+dist/
+build/
+static/
+*_local.py
+.coverage
+*~
+._*
+*.DS_Store
+.git_old
