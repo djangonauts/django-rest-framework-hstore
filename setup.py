@@ -5,24 +5,20 @@ from setuptools import setup
 import re
 import os
 import sys
+from rest_framework_hstore import get_version
 
 
-name = 'django-reusable-app'
-package = 'myproject'
-description = ''
-url = 'http://github.com/.../.../'
-author = ''
+name = 'django-rest-framework-hstore'
+package = 'rest_framework_hstore'
+description = 'Django Rest Framework tools for django-hstore'
+url = 'https://github.com/djangonauts/django-rest-framework-hstore'
+author = 'Federico Capoano'
 author_email = ''
 license = 'BSD'
-install_requires = []
-
-
-def get_version(package):
-    """
-    Return package version as listed in `__version__` in `init.py`.
-    """
-    init_py = open(os.path.join(package, '__init__.py')).read()
-    return re.search("^__version__ = ['\"]([^'\"]+)['\"]", init_py, re.MULTILINE).group(1)
+install_requires = [
+    'djangorestframework',
+    'django_hstore'
+]
 
 
 def get_packages(package):
@@ -52,7 +48,7 @@ def get_package_data(package):
 
 if sys.argv[-1] == 'publish':
     os.system("python setup.py sdist upload")
-    args = {'version': get_version(package)}
+    args = {'version': get_version()}
     print "You probably want to also tag the version now:"
     print "  git tag -a %(version)s -m 'version %(version)s'" % args
     print "  git push --tags"
@@ -61,7 +57,7 @@ if sys.argv[-1] == 'publish':
 
 setup(
     name=name,
-    version=get_version(package),
+    version=get_version(),
     url=url,
     license=license,
     description=description,
