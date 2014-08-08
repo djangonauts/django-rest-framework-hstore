@@ -1,0 +1,9 @@
+[run]
+omit =
+    /tests
+    /static
+    /*/__init__.py
+    /setup.py
+    /manage.py
+    /testsettings.py
+    /testsettings_local.py
