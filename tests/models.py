@@ -37,18 +37,18 @@ class SchemaDataBag(HStoreModel):
                 'default': 1.0
             }
         },
-        #{
-        #    'name': 'boolean',
-        #    'class': 'BooleanField',
-        #},
-        #{
-        #    'name': 'boolean_true',
-        #    'class': 'BooleanField',
-        #    'kwargs': {
-        #        'verbose_name': 'boolean true',
-        #        'default': True
-        #    }
-        #},
+        {
+            'name': 'boolean',
+            'class': 'BooleanField',
+        },
+        {
+            'name': 'boolean_true',
+            'class': 'BooleanField',
+            'kwargs': {
+                'verbose_name': 'boolean true',
+                'default': True
+            }
+        },
         {
             'name': 'char',
             'class': 'CharField',
@@ -82,29 +82,29 @@ class SchemaDataBag(HStoreModel):
                 'choices': (('choice1', 'choice1'), ('choice2', 'choice2')),
             }
         },
-        #{
-        #    'name': 'date',
-        #    'class': 'DateField',
-        #    'kwargs': {
-        #        'blank': True
-        #    }
-        #},
-        #{
-        #    'name': 'datetime',
-        #    'class': 'DateTimeField',
-        #    'kwargs': {
-        #        'blank': True
-        #    }
-        #},
-        #{
-        #    'name': 'decimal',
-        #    'class': 'DecimalField',
-        #    'kwargs': {
-        #        'blank': True,
-        #        'decimal_places': 2,
-        #        'max_digits': 4
-        #    }
-        #},
+        {
+            'name': 'date',
+            'class': 'DateField',
+            'kwargs': {
+                'blank': True
+            }
+        },
+        {
+            'name': 'datetime',
+            'class': 'DateTimeField',
+            'kwargs': {
+                'blank': True
+            }
+        },
+        {
+            'name': 'decimal',
+            'class': 'DecimalField',
+            'kwargs': {
+                'blank': True,
+                'decimal_places': 2,
+                'max_digits': 4
+            }
+        },
         {
             'name': 'email',
             'class': 'EmailField',
