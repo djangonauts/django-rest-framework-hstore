@@ -1,0 +1,5 @@
+ignore-paths:
+    - /tests
+    - /setup.py
+    - /testsettings.py
+    - /manage.py
