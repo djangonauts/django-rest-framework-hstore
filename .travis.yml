@@ -28,7 +28,7 @@ before_script:
 
 # command to run tests, e.g. python setup.py test
 script:
-  - coverage run --source drf_hstore runtests.py
+  - coverage run --source django_rest_framework_hstore manage.py test
 
 after_success:
   coveralls
