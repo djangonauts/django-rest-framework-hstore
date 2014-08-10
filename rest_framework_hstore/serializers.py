@@ -1,3 +1,7 @@
+from django.db import models
+from django.forms import widgets
+
+from rest_framework.fields import * 
 from rest_framework.serializers import ModelSerializer
 
 from django_hstore.fields import DictionaryField
@@ -6,24 +10,6 @@ from .fields import HStoreField
 
 
 __all__ = ['HStoreSerializer']
-
-
-class _FieldMappingDict(dict):
-    def __getitem__(self, *args, **kwargs):
-        """
-        in case of virtual hstore fields, the argument won't match any key because
-        virtual field classes don't match exactly standard django model field classes
-        but it will match the string key
-        """
-        args = list(args)
-        cls = args[0]
-        
-        # if class doesn't match any class in the keys, but its string representation does
-        if cls not in self.keys() and cls.__name__ in self.keys():
-            # substitute argument with string instead of concrete class
-            args[0] = cls.__name__
-        
-        return super(_FieldMappingDict, self).__getitem__(*args, **kwargs)
 
 
 class HStoreSerializer(ModelSerializer):
@@ -56,22 +42,86 @@ class HStoreSerializer(ModelSerializer):
         
         The reason is that a virtual field won't match the standard django field,
         but can match the string version.
-        
-        This approach is taken in order to avoid overriding the get_field method,
-        this should give us the advantage of less mantainance in the long run,
-        while the disadvantage of complexity is small because the few lines of code.
         """
+        # add DictionaryField to field_mapping
+        self.field_mapping[DictionaryField] = HStoreField
+        # TODO: support ReferenceField
+        
+        additional_fields = {}
         # iterate over self.field_mapping
         for field_class, serializer_field in self.field_mapping.items():
             # if the field can be represented as a string
             if hasattr(field_class, '__name__'):
                 # add mapping using string instead of class
-                self.field_mapping[field_class.__name__] = serializer_field
+                additional_fields[field_class.__name__] = serializer_field
         
-        self.field_mapping[DictionaryField] = HStoreField
+        # update field_mapping dictionary
+        self.field_mapping.update(additional_fields)
+    
+    def get_field(self, model_field):
+        """
+        Creates a default instance of a basic non-relational field.
+        """
+        kwargs = {}
+
+        if model_field.null or model_field.blank:
+            kwargs['required'] = False
+
+        if isinstance(model_field, models.AutoField) or not model_field.editable:
+            kwargs['read_only'] = True
+
+        if model_field.has_default():
+            kwargs['default'] = model_field.get_default()
+
+        if issubclass(model_field.__class__, models.TextField):
+            kwargs['widget'] = widgets.Textarea
+
+        if model_field.verbose_name is not None:
+            kwargs['label'] = model_field.verbose_name
+
+        if model_field.help_text is not None:
+            kwargs['help_text'] = model_field.help_text
+
+        # TODO: TypedChoiceField?
+        if model_field.flatchoices:  # This ModelField contains choices
+            kwargs['choices'] = model_field.flatchoices
+            if model_field.null:
+                kwargs['empty'] = None
+            return ChoiceField(**kwargs)
+
+        # put this below the ChoiceField because min_value isn't a valid initializer
+        if issubclass(model_field.__class__, models.PositiveIntegerField) or\
+                issubclass(model_field.__class__, models.PositiveSmallIntegerField):
+            kwargs['min_value'] = 0
+
+        attribute_dict = {
+            models.CharField: ['max_length'],
+            models.CommaSeparatedIntegerField: ['max_length'],
+            models.DecimalField: ['max_digits', 'decimal_places'],
+            models.EmailField: ['max_length'],
+            models.FileField: ['max_length'],
+            models.ImageField: ['max_length'],
+            models.SlugField: ['max_length'],
+            models.URLField: ['max_length'],
+        }
+
+        if model_field.__class__ in attribute_dict:
+            attributes = attribute_dict[model_field.__class__]
+            for attribute in attributes:
+                kwargs.update({attribute: getattr(model_field, attribute)})
         
-        # override self.field_mapping with a custom dict class
-        self.field_mapping = _FieldMappingDict(self.field_mapping)
+        if model_field.__class__ == DictionaryField and model_field.schema:
+            kwargs['schema'] = True
+
+        try:
+            return self.field_mapping[model_field.__class__](**kwargs)
+        except KeyError:
+            pass
+        
+        try:
+            return self.field_mapping[model_field.__class__.__name__](**kwargs)
+        except KeyError:
+            return ModelField(model_field=model_field, **kwargs)
     
     def restore_object(self, attrs, instance=None):
         """

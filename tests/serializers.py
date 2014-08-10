@@ -1,5 +1,3 @@
-from rest_framework import serializers
-from rest_framework_hstore.fields import HStoreField
 from rest_framework_hstore.serializers import HStoreSerializer
 
 from .models import *
@@ -17,6 +15,5 @@ class DataBagSerializer(HStoreSerializer):
 
 
 class SchemaDataBagSerializer(HStoreSerializer):
-    data = HStoreField(schema=True)
     class Meta:
         model = SchemaDataBag
