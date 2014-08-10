@@ -1,5 +1,5 @@
 Django Rest Framework HStore
-============================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. image:: https://travis-ci.org/djangonauts/django-rest-framework-hstore.png
    :target: https://travis-ci.org/djangonauts/django-rest-framework-hstore
@@ -20,3 +20,38 @@ Django Rest Framework HStore
 Serializer field for django-hstore.
 
 Work in progress.
+
+HStoreField
+===========
+
+Not sufficient to support schema mode.
+
+.. code-block:: python
+
+    from rest_framework import serializers
+    from myapp.models import MyModel
+    
+    # rest_framework_hstore 
+    from rest_framework_hstore.fields import HStoreField
+    
+    class MyHStoreSerializer(serializers.ModelSerializer):
+        data = HStoreField()
+        class Meta:
+            model = MyModel
+
+
+HStoreSerializer
+================
+
+Supports ``DictionaryField`` and schema mode out of the box.
+
+.. code-block:: python
+
+    from myapp.models import MyModel
+    
+    # rest_framework_hstore 
+    from rest_framework_hstore.serializers import HStoreSerializer
+    
+    class MyHStoreSerializer(HStoreSerializer):
+        class Meta:
+            model = MyModel
