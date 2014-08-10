@@ -27,7 +27,7 @@ class SchemaDataBag(HStoreModel):
             'name': 'number',
             'class': 'IntegerField',
             'kwargs': {
-                'default': 0
+                'default': 1
             }
         },
         {

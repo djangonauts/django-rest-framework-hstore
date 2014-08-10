@@ -15,13 +15,7 @@ class SchemaDataBagViewSet(viewsets.ModelViewSet):
     serializer_class = SchemaDataBagSerializer
 
 
-class SchemaHStoreViewSet(viewsets.ModelViewSet):
-    model = SchemaDataBag
-    serializer_class = SchemaHStoreSerializer
-
-
 router = routers.SimpleRouter()
 router.register(r'databag', DataBagViewSet)
 router.register(r'schemadatabag', SchemaDataBagViewSet)
-router.register(r'schemahstore', SchemaHStoreViewSet)
 urlpatterns = router.urls
