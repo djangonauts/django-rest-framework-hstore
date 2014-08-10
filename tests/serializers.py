@@ -11,8 +11,7 @@ __all__ = [
 ]
 
 
-class DataBagSerializer(serializers.ModelSerializer):
-    data = HStoreField()
+class DataBagSerializer(HStoreSerializer):
     class Meta:
         model = DataBag
 

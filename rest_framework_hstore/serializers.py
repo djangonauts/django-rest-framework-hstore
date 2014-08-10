@@ -1,5 +1,9 @@
 from rest_framework.serializers import ModelSerializer
 
+from django_hstore.fields import DictionaryField
+
+from .fields import HStoreField
+
 
 __all__ = ['HStoreSerializer']
 
@@ -58,11 +62,13 @@ class HStoreSerializer(ModelSerializer):
         while the disadvantage of complexity is small because the few lines of code.
         """
         # iterate over self.field_mapping
-        for model_field, serializer_field in self.field_mapping.items():
+        for field_class, serializer_field in self.field_mapping.items():
             # if the field can be represented as a string
-            if hasattr(model_field, '__name__'):
+            if hasattr(field_class, '__name__'):
                 # add mapping using string instead of class
-                self.field_mapping[model_field.__name__] = serializer_field
+                self.field_mapping[field_class.__name__] = serializer_field
+        
+        self.field_mapping[DictionaryField] = HStoreField
         
         # override self.field_mapping with a custom dict class
         self.field_mapping = _FieldMappingDict(self.field_mapping)
@@ -75,13 +81,15 @@ class HStoreSerializer(ModelSerializer):
         meta = self.opts.model._meta
         original_virtual_fields = list(meta.virtual_fields)  # copy
         
-        # remove hstore virtual fields from meta
-        for field in model._hstore_virtual_fields.values():
-            meta.virtual_fields.remove(field)
-        
+        if hasattr(model, '_hstore_virtual_fields'):
+            # remove hstore virtual fields from meta
+            for field in model._hstore_virtual_fields.values():
+                meta.virtual_fields.remove(field)
+            
         instance = super(HStoreSerializer, self).restore_object(attrs, instance)
         
-        # restore original virtual fields
-        meta.virtual_fields = original_virtual_fields
+        if hasattr(model, '_hstore_virtual_fields'):
+            # restore original virtual fields
+            meta.virtual_fields = original_virtual_fields
         
         return instance
