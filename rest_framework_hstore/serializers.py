@@ -67,3 +67,21 @@ class HStoreSerializer(ModelSerializer):
         # override self.field_mapping with a custom dict class
         self.field_mapping = _FieldMappingDict(self.field_mapping)
     
+    def restore_object(self, attrs, instance=None):
+        """
+        temporarily remove hstore virtual fields otherwise DRF considers them many2many
+        """
+        model = self.opts.model
+        meta = self.opts.model._meta
+        original_virtual_fields = list(meta.virtual_fields)  # copy
+        
+        # remove hstore virtual fields from meta
+        for field in model._hstore_virtual_fields.values():
+            meta.virtual_fields.remove(field)
+        
+        instance = super(HStoreSerializer, self).restore_object(attrs, instance)
+        
+        # restore original virtual fields
+        meta.virtual_fields = original_virtual_fields
+        
+        return instance
