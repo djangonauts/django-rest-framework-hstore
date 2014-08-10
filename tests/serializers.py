@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from rest_framework_hstore.fields import DictionaryField
+from rest_framework_hstore.fields import HStoreField
 from rest_framework_hstore.serializers import HStoreSerializer
 
 from .models import *
@@ -7,25 +7,17 @@ from .models import *
 
 __all__ = [
     'DataBagSerializer',
-    'SchemaDataBagSerializer',
-    'SchemaHStoreSerializer'
+    'SchemaDataBagSerializer'
 ]
 
 
 class DataBagSerializer(serializers.ModelSerializer):
-    data = DictionaryField()
+    data = HStoreField()
     class Meta:
-        fields = ['name', 'data']
         model = DataBag
 
 
-class SchemaDataBagSerializer(serializers.ModelSerializer):
-    data = DictionaryField(schema=True)
-    class Meta:
-        model = SchemaDataBag
-
-
-class SchemaHStoreSerializer(HStoreSerializer):
-    data = DictionaryField(schema=True)
+class SchemaDataBagSerializer(HStoreSerializer):
+    data = HStoreField(schema=True)
     class Meta:
         model = SchemaDataBag

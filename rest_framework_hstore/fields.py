@@ -7,16 +7,16 @@ from django_hstore.dict import HStoreDict
 from django_hstore.exceptions import HStoreDictException
 
 
-__all__ = ['DictionaryField']
+__all__ = ['HStoreField']
 
 
-class DictionaryField(WritableField):
+class HStoreField(WritableField):
     """
     DRF HStore Dictionary Field
     """
     def __init__(self, *args, **kwargs):
         self.schema = kwargs.pop('schema', False)
-        super(DictionaryField, self).__init__(*args, **kwargs)
+        super(HStoreField, self).__init__(*args, **kwargs)
         if self.schema:
             # hide dictionary field, use virtual fields
             self.write_only = True
