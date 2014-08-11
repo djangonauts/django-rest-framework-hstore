@@ -36,6 +36,7 @@ Not sufficient to support schema mode.
     
     class MyHStoreSerializer(serializers.ModelSerializer):
         data = HStoreField()
+        
         class Meta:
             model = MyModel
 

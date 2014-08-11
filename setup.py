@@ -9,7 +9,7 @@ from rest_framework_hstore import get_version
 
 
 name = 'django-rest-framework-hstore'
-package = 'rest_framework_hstore'
+package = 'djangorestframework-hstore'
 description = 'Django Rest Framework tools for django-hstore'
 url = 'https://github.com/djangonauts/django-rest-framework-hstore'
 author = 'Federico Capoano'
@@ -19,6 +19,21 @@ install_requires = [
     'djangorestframework',
     'django_hstore'
 ]
+classifiers=[
+    'Development Status :: 3 - Alpha',
+    'Environment :: Web Environment',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: BSD License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+    'Framework :: Django',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 2.6',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.3',
+],
 
 
 def get_packages(package):
@@ -61,9 +76,11 @@ setup(
     url=url,
     license=license,
     description=description,
+    long_description=open('README.rst').read(),
     author=author,
     author_email=author_email,
     packages=get_packages(package),
     package_data=get_package_data(package),
-    install_requires=install_requires
+    install_requires=install_requires,
+    classifiers=classifiers
 )
