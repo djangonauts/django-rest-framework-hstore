@@ -19,7 +19,8 @@ Django Rest Framework HStore
 
 Serializer field for django-hstore.
 
-Work in progress.
+This code was originally written for `Nodeshot <https://github.com/ninuxorg/nodeshot>`__
+and then extracted into this generic python package.
 
 HStoreField
 ===========
