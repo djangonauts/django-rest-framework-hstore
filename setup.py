@@ -8,12 +8,12 @@ import sys
 from rest_framework_hstore import get_version
 
 
-name = 'django-rest-framework-hstore'
-package = 'djangorestframework-hstore'
+name = 'djangorestframework-hstore'
+package = 'rest_framework_hstore'
 description = 'Django Rest Framework tools for django-hstore'
 url = 'https://github.com/djangonauts/django-rest-framework-hstore'
 author = 'Federico Capoano'
-author_email = ''
+author_email = 'django-rest-framework-hstore@googlegroups.com'
 license = 'BSD'
 install_requires = [
     'djangorestframework',
@@ -33,7 +33,7 @@ classifiers=[
     'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.4',
-],
+]
 
 
 def get_packages(package):
