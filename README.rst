@@ -15,17 +15,27 @@ Django Rest Framework HStore
    :target: https://requires.io/github/djangonauts/django-rest-framework-hstore/requirements/?branch=master
    :alt: Requirements Status
 
+.. image:: https://badge.fury.io/py/djangorestframework-hstore.png
+   :target: http://badge.fury.io/py/djangorestframework-hstore
+
 ------------
 
-Serializer field for django-hstore.
+Django Rest Framework tools for `django-hstore <https://github.com/djangonauts/django-hstore>`__.
 
 This code was originally written for `Nodeshot <https://github.com/ninuxorg/nodeshot>`__
 and then extracted into this generic python package.
 
-HStoreField
-===========
+Install
+=======
 
-Not sufficient to support schema mode.
+.. code-block:: bash
+
+    pip install djangorestframework-hstore
+
+HStoreField Usage
+=================
+
+This field is not sufficient to support **django-hstore** ``schema-mode``.
 
 .. code-block:: python
 
@@ -42,10 +52,12 @@ Not sufficient to support schema mode.
             model = MyModel
 
 
-HStoreSerializer
-================
+HStoreSerializer Usage
+======================
 
-Supports ``DictionaryField`` and schema mode out of the box.
+Supports **django-hstore** ``DictionaryField`` and ``schema-mode`` out of the box.
+
+Prefer this to ``HStoreField``.
 
 .. code-block:: python
 
