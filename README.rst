@@ -58,6 +58,22 @@ Supports ``DictionaryField`` and schema mode out of the box.
         class Meta:
             model = MyModel
 
+Contributing
+------------
+
+1. Join the `Django REST Framework HStore Mailing
+   List <https://groups.google.com/forum/#!forum/django-rest-framework-hstore>`__
+   and announce your intentions
+2. Follow the `PEP8 Style Guide for Python
+   Code <http://www.python.org/dev/peps/pep-0008/>`__
+3. Fork this repo
+4. Write code
+5. Write tests for your code
+6. Ensure all tests pass
+7. Ensure test coverage is not under 90%
+8. Document your changes
+9. Send pull request
+
 BSD License
 ===========
 Copyright (C) 2014 Federico Capoano
