@@ -1,0 +1,8 @@
+Changelog
+=========
+
+Version 1.0
+-----------
+
+- Added HStoreField
+- Added HStoreSerializer with support for schema-mode
