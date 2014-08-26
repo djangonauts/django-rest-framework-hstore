@@ -17,7 +17,7 @@ author_email = 'django-rest-framework-hstore@googlegroups.com'
 license = 'BSD'
 install_requires = [
     'djangorestframework',
-    'django_hstore'
+    'django_hstore>=1.3.1'
 ]
 classifiers=[
     'Development Status :: 3 - Alpha',
