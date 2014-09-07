@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Version 1.1
+
+- Added zip_false=True in setup.py
+
 Version 1.0
 -----------
 
