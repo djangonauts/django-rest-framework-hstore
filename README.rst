@@ -25,6 +25,8 @@ Django Rest Framework tools for `django-hstore <https://github.com/djangonauts/d
 This code was originally written for `Nodeshot <https://github.com/ninuxorg/nodeshot>`__
 and then extracted into this generic python package.
 
+Tested on *Python 2.7* and *3.4*, *Django 1.6.x* and *1.7*.
+
 Install
 =======
 
