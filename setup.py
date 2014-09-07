@@ -82,5 +82,6 @@ setup(
     packages=get_packages(package),
     package_data=get_package_data(package),
     install_requires=install_requires,
-    classifiers=classifiers
+    classifiers=classifiers,
+    zip_safe=False,
 )
