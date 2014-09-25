@@ -1,4 +1,4 @@
 psycopg2>=2.4.3
 Django>=1.6.5
-djangorestframework==2.4.2
+djangorestframework==2.4.3
 django_hstore>=1.3.1
