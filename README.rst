@@ -16,7 +16,10 @@ Django Rest Framework HStore
    :alt: Requirements Status
 
 .. image:: https://badge.fury.io/py/djangorestframework-hstore.png
-   :target: http://badge.fury.io/py/djangorestframework-hstore
+   :target: https://pypi.python.org/pypi/djangorestframework-hstore
+
+.. image:: https://pypip.in/d/djangorestframework-hstore/badge.png
+   :target: https://pypi.python.org/pypi/djangorestframework-hstore
 
 ------------
 
