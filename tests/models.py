@@ -1,5 +1,6 @@
 from django.db import models
 from django_hstore import hstore
+import datetime
 
 
 __all__ = [
@@ -40,6 +41,9 @@ class SchemaDataBag(HStoreModel):
         {
             'name': 'boolean',
             'class': 'BooleanField',
+            'kwargs': {
+                'default': False
+            }
         },
         {
             'name': 'boolean_true',
@@ -86,7 +90,8 @@ class SchemaDataBag(HStoreModel):
             'name': 'date',
             'class': 'DateField',
             'kwargs': {
-                'blank': True
+                'blank': True,
+                'default': datetime.date(2015, 3, 15),
             }
         },
         {
@@ -102,7 +107,8 @@ class SchemaDataBag(HStoreModel):
             'kwargs': {
                 'blank': True,
                 'decimal_places': 2,
-                'max_digits': 4
+                'max_digits': 4,
+                'default': '1.0',
             }
         },
         {

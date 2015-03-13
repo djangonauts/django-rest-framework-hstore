@@ -6,12 +6,12 @@ from .serializers import *
 
 
 class DataBagViewSet(viewsets.ModelViewSet):
-    model = DataBag
+    queryset = DataBag.objects.all()
     serializer_class = DataBagSerializer
 
 
 class SchemaDataBagViewSet(viewsets.ModelViewSet):
-    model = SchemaDataBag
+    queryset = SchemaDataBag.objects.all()
     serializer_class = SchemaDataBagSerializer
 
 

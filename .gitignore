@@ -11,3 +11,8 @@ static/
 ._*
 *.DS_Store
 .git_old
+
+.project
+
+.pydevproject
+/htmlcov/

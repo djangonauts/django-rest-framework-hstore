@@ -47,7 +47,6 @@ INSTALLED_APPS = (
     'tests',
 )
 
-
 try:
     from testsettings_local import *
 except ImportError:
