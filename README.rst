@@ -25,10 +25,21 @@ Django Rest Framework HStore
 
 Django Rest Framework tools for `django-hstore <https://github.com/djangonauts/django-hstore>`__.
 
+Tribute to `Nodeshot <https://github.com/ninuxorg/nodeshot>`__
+==============================================================
+
 This code was originally written for `Nodeshot <https://github.com/ninuxorg/nodeshot>`__
 and then extracted into this generic python package.
 
-Tested on *Python 2.7* and *3.4*, *Django 1.6.x* and *1.7*.
+Compatibility with DRF, Django and Python
+=========================================
+
+==================  =========== ====================== ================ ================
+DRF-hstore version  DRF version django-hstore version  Django version   Python version
+**1.2**             **3.1.x**   **1.3.1** to **1.3.5** **1.6**, **1.7** **2.7**, **3.4**
+**1.1**             **2.4.x**   **1.3.1** to **1.3.5** **1.6**, **1.7** **2.7**, **3.4**
+**1.0**             **2.4.x**   **1.3.1** to **1.3.5** **1.6**, **1.7** **2.7**, **3.4**
+==================  =========== ====================== ================ ================
 
 Install
 =======
@@ -46,13 +57,13 @@ This field is not sufficient to support **django-hstore** ``schema-mode``.
 
     from rest_framework import serializers
     from myapp.models import MyModel
-    
-    # rest_framework_hstore 
+
+    # rest_framework_hstore
     from rest_framework_hstore.fields import HStoreField
-    
+
     class MyHStoreSerializer(serializers.ModelSerializer):
         data = HStoreField()
-        
+
         class Meta:
             model = MyModel
 
@@ -67,10 +78,10 @@ Prefer this to ``HStoreField``.
 .. code-block:: python
 
     from myapp.models import MyModel
-    
-    # rest_framework_hstore 
+
+    # rest_framework_hstore
     from rest_framework_hstore.serializers import HStoreSerializer
-    
+
     class MyHStoreSerializer(HStoreSerializer):
         class Meta:
             model = MyModel
@@ -79,7 +90,7 @@ Contributing
 ------------
 
 1. Join the `Django REST Framework HStore Mailing
-   List <https://groups.google.com/forum/#!forum/django-rest-framework-hstore>`__
+   List <http://bit.ly/1OUTLH6>`__
    and announce your intentions
 2. Follow the `PEP8 Style Guide for Python
    Code <http://www.python.org/dev/peps/pep-0008/>`__
