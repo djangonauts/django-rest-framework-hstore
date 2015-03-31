@@ -8,6 +8,20 @@ import sys
 from rest_framework_hstore import get_version
 
 
+def get_install_requires():
+    """
+    parse requirements.txt, ignore links, exclude comments
+    """
+    requirements = []
+    for line in open('requirements.txt').readlines():
+        # skip to next iteration if comment or empty line
+        if line.startswith('#') or line == '' or line.startswith('http') or line.startswith('git'):
+            continue
+        # add line to requirements
+        requirements.append(line)
+    return requirements
+
+
 name = 'djangorestframework-hstore'
 package = 'rest_framework_hstore'
 description = 'Django Rest Framework tools for django-hstore'
@@ -15,11 +29,8 @@ url = 'https://github.com/djangonauts/django-rest-framework-hstore'
 author = 'Federico Capoano'
 author_email = 'django-rest-framework-hstore@googlegroups.com'
 license = 'BSD'
-install_requires = [
-    'djangorestframework',
-    'django_hstore>=1.3.1'
-]
-classifiers=[
+install_requires = get_install_requires()
+classifiers = [
     'Development Status :: 3 - Alpha',
     'Environment :: Web Environment',
     'Intended Audience :: Developers',
