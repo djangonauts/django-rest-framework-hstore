@@ -8,8 +8,8 @@ python:
   - "2.7"
 
 env:
-  - DJANGO="django==1.7"
-  - DJANGO="django==1.6.7"
+  - DJANGO="django==1.7.7"
+  - DJANGO="django==1.6.11"
 
 branches:
   only:
