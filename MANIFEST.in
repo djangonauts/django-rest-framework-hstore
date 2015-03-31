@@ -1,0 +1,3 @@
+include LICENSE *.txt
+recursive-include *.rst *.py
+recursive-exclude tests manage.py *.pyc *.swp *.yml
