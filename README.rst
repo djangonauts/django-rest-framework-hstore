@@ -18,7 +18,7 @@ Django Rest Framework HStore
 .. image:: https://badge.fury.io/py/djangorestframework-hstore.png
    :target: https://pypi.python.org/pypi/djangorestframework-hstore
 
-.. image:: https://pypip.in/d/djangorestframework-hstore/badge.png
+.. image:: https://img.shields.io/pypi/dm/djangorestframework-hstore.svg
    :target: https://pypi.python.org/pypi/djangorestframework-hstore
 
 ------------
