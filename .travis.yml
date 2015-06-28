@@ -19,8 +19,8 @@ branches:
 # command to install requirements
 install:
   - pip install $DJANGO
-  - pip install -r requirements.txt --use-mirrors
-  - pip install coverage coveralls --use-mirrors
+  - pip install -r requirements.txt
+  - pip install coverage coveralls
   - python setup.py -q develop
 
 before_script:
