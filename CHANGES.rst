@@ -1,6 +1,13 @@
 Changelog
 =========
 
+Version 1.3 [2015-06-28]
+--------------------------
+
+- Updated compatibility table in README
+- Removed executable flags
+- Reorganized tests
+
 Version 1.2 [2015-03-31]
 ------------------------
 
