@@ -23,7 +23,7 @@ DATABASES = {
 
 ALLOWED_HOSTS = []
 
-ROOT_URLCONF = 'tests.urls'
+ROOT_URLCONF = 'drf_hstore_tests.urls'
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_hstore',
     'rest_framework',
-    'tests',
+    'drf_hstore_tests',
 )
 
 MIDDLEWARE_CLASSES = (
