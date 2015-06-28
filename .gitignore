@@ -16,3 +16,4 @@ static/
 
 .pydevproject
 /htmlcov/
+*.komodoproject
